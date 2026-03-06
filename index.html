@@ -2,10 +2,27 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>WASTEXZ</title>
+
+<!-- SECURITY -->
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="X-XSS-Protection" content="1; mode=block">
+<meta name="referrer" content="no-referrer">
+
+<!-- CSP -->
+<meta http-equiv="Content-Security-Policy"
+content="
+default-src 'self';
+style-src 'self' https://fonts.googleapis.com 'unsafe-inline';
+font-src https://fonts.gstatic.com;
+script-src 'self' 'unsafe-inline';
+img-src 'self' data:;
+">
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
@@ -16,8 +33,9 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 scroll-behavior:smooth;
-cursor:none;
 }
+
+/* BODY */
 
 body{
 background:#0c0d10;
@@ -59,7 +77,7 @@ padding:25px 60px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(12,13,16,0.8);
+background:rgba(12,13,16,0.85);
 backdrop-filter:blur(10px);
 border-bottom:1px solid #1a1a1a;
 z-index:100;
@@ -227,25 +245,6 @@ letter-spacing:3px;
 color:#555;
 }
 
-/* CURSOR */
-
-.cursor{
-position:fixed;
-width:18px;
-height:18px;
-border:1px solid #888;
-border-radius:50%;
-pointer-events:none;
-transform:translate(-50%,-50%);
-transition:0.15s;
-z-index:9999;
-}
-
-.cursor.hover{
-transform:translate(-50%,-50%) scale(2);
-border-color:#fff;
-}
-
 </style>
 </head>
 
@@ -325,8 +324,7 @@ Discipline. Taste. Precision.
 Тишина сильнее шума.<br>
 Стратегия важнее скорости.<br>
 Контроль важнее эмоций.<br>
-Репутация важнее внимания.<br><br>
-Время показывает ценность структуры.
+Репутация важнее внимания.
 </p>
 
 </section>
@@ -382,13 +380,16 @@ EST. 2026 — WZ Private Digital House
 
 </footer>
 
-<div class="cursor"></div>
-
 <script>
+
+/* SAFE QUERY */
+
+const qs = (selector) => document.querySelector(selector);
+const qsa = (selector) => document.querySelectorAll(selector);
 
 /* SCROLL ANIMATION */
 
-const sections = document.querySelectorAll(".section");
+const sections = qsa(".section");
 
 const observer = new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
@@ -396,7 +397,7 @@ if(entry.isIntersecting){
 entry.target.classList.add("show");
 }
 });
-});
+},{threshold:0.15});
 
 sections.forEach(section=>{
 observer.observe(section);
@@ -405,30 +406,17 @@ observer.observe(section);
 /* SCROLL PROGRESS */
 
 window.addEventListener("scroll",()=>{
+
 let scrollTop = document.documentElement.scrollTop;
 let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+if(height <= 0) return;
+
 let progress = scrollTop / height * 100;
 
-document.querySelector(".progress").style.width = progress + "%";
-});
+qs(".progress").style.width = progress + "%";
 
-/* CURSOR */
-
-const cursor = document.querySelector(".cursor");
-
-document.addEventListener("mousemove",e=>{
-cursor.style.left = e.clientX+"px";
-cursor.style.top = e.clientY+"px";
-});
-
-document.querySelectorAll("a, .button, .project").forEach(el=>{
-el.addEventListener("mouseenter",()=>{
-cursor.classList.add("hover");
-});
-el.addEventListener("mouseleave",()=>{
-cursor.classList.remove("hover");
-});
-});
+},{passive:true});
 
 </script>
 
