@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>WASTEXZ</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
@@ -22,25 +24,6 @@ color:#e5e5e5;
 font-family:'Inter',sans-serif;
 }
 
-/* MONOGRAM */
-
-.monogram{
-opacity:0.7;
-font-family:'Cormorant Garamond',serif;
-font-size:20px;
-letter-spacing:4px;
-border:1px solid #444;
-display:inline-block;
-padding:6px 14px;
-margin-bottom:30px;
-color:#b5b5b5;
-transition:0.4s;
-}
-
-.monogram:hover{
-opacity:1;
-}
-
 /* NAV */
 
 nav{
@@ -50,8 +33,21 @@ width:100%;
 padding:25px 60px;
 display:flex;
 justify-content:space-between;
-background:#0c0d10;
+align-items:center;
+background:rgba(12,13,16,0.8);
+backdrop-filter:blur(10px);
 border-bottom:1px solid #1a1a1a;
+z-index:100;
+}
+
+nav a{
+color:#9c9c9c;
+text-decoration:none;
+margin-left:30px;
+font-size:13px;
+letter-spacing:2px;
+position:relative;
+transition:0.4s;
 }
 
 nav a::after{
@@ -73,51 +69,52 @@ nav a:hover::after{
 width:100%;
 }
 
-nav a:hover{
-color:#e5e5e5;
+/* MONOGRAM */
+
+.monogram{
+opacity:0.7;
+font-family:'Cormorant Garamond',serif;
+font-size:20px;
+letter-spacing:4px;
+border:1px solid #444;
+display:inline-block;
+padding:6px 14px;
+margin-bottom:30px;
+color:#b5b5b5;
+transition:0.4s;
+}
+
+.monogram:hover{
+opacity:1;
 }
 
 /* SECTIONS */
 
 .section{
-height:100vh;
+min-height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding:40px;
+padding:80px 40px;
 opacity:0;
 transform:translateY(40px);
-animation:fade 1.5s ease forwards;
+transition:1s;
 }
 
-@keyframes fade{
-to{
+.section.show{
 opacity:1;
 transform:translateY(0);
 }
-}
+
+/* TEXT */
 
 h1{
 font-family:'Cormorant Garamond',serif;
 font-size:72px;
 letter-spacing:6px;
 margin-bottom:20px;
-}
-
-.tagline{
-letter-spacing:4px;
-font-size:14px;
-color:#9c9c9c;
-margin-bottom:40px;
-}
-
-.line{
-width:120px;
-height:1px;
-background:#333;
-margin:20px 0;
 }
 
 h2{
@@ -127,29 +124,54 @@ margin-bottom:20px;
 letter-spacing:3px;
 }
 
+.tagline{
+letter-spacing:4px;
+font-size:14px;
+color:#9c9c9c;
+margin-bottom:40px;
+}
+
 .text{
 max-width:600px;
-line-height:1.7;
+line-height:1.8;
 color:#b5b5b5;
 font-size:15px;
+}
+
+.line{
+width:120px;
+height:1px;
+background:#333;
+margin:20px 0;
 }
 
 /* BUTTON */
 
 .button{
 margin-top:40px;
-padding:10px 36px;
+padding:12px 36px;
 border:1px solid #444;
 color:#e5e5e5;
 text-decoration:none;
 font-size:13px;
 letter-spacing:3px;
-transition:0.3s;
+transition:0.4s;
 }
 
 .button:hover{
 background:#e5e5e5;
 color:#0c0d10;
+box-shadow:0 0 20px rgba(255,255,255,0.2);
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:60px 20px;
+font-size:12px;
+letter-spacing:3px;
+color:#555;
 }
 
 </style>
@@ -158,14 +180,20 @@ color:#0c0d10;
 <body>
 
 <nav>
+
 <div>WASTEXZ</div>
+
 <div>
 <a href="#home">Home</a>
 <a href="#philosophy">Philosophy</a>
 <a href="#identity">Identity</a>
+<a href="#manifesto">Manifesto</a>
 <a href="#contact">Contact</a>
 </div>
+
 </nav>
+
+<!-- HOME -->
 
 <section id="home" class="section">
 
@@ -182,6 +210,8 @@ Discipline. Taste. Precision.
 <a href="#philosophy" class="button">ENTER</a>
 
 </section>
+
+<!-- PHILOSOPHY -->
 
 <section id="philosophy" class="section">
 
@@ -200,6 +230,8 @@ Discipline. Taste. Precision.
 
 </section>
 
+<!-- IDENTITY -->
+
 <section id="identity" class="section">
 
 <h2>Идентичность</h2>
@@ -214,20 +246,25 @@ Discipline. Taste. Precision.
 
 </section>
 
-<section class="section">
+<!-- MANIFESTO -->
 
-<h2>Принципы</h2>
+<section id="manifesto" class="section">
+
+<h2>Манифест</h2>
 
 <div class="line"></div>
 
 <p class="text">
+Тишина сильнее шума.<br>
 Стратегия важнее скорости.<br>
 Контроль важнее эмоций.<br>
-Репутация важнее шума.<br>
-Результат важнее слов.
+Репутация важнее внимания.<br><br>
+Время показывает ценность структуры.
 </p>
 
 </section>
+
+<!-- CONTACT -->
 
 <section id="contact" class="section">
 
@@ -243,10 +280,37 @@ Discipline. Taste. Precision.
 
 </section>
 
-<div style="text-align:center; padding:40px 0; font-size:12px; letter-spacing:3px; color:#555;">
-EST. 2026 — WZ Private Digital House<br><br>
+<footer>
+
+EST. 2026 — WZ Private Digital House
+
+<br><br>
+
 Структура — это свобода.
-</div>
+
+</footer>
+
+<script>
+
+const sections = document.querySelectorAll(".section");
+
+const observer = new IntersectionObserver(entries => {
+
+entries.forEach(entry => {
+
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+
+});
+
+});
+
+sections.forEach(section => {
+observer.observe(section);
+});
+
+</script>
 
 </body>
 </html>
