@@ -54,13 +54,23 @@ background:#0c0d10;
 border-bottom:1px solid #1a1a1a;
 }
 
-nav a{
-color:#9c9c9c;
-text-decoration:none;
-margin-left:30px;
-font-size:13px;
-letter-spacing:2px;
+nav a::after{
+content:"";
+position:absolute;
+left:0;
+bottom:-6px;
+width:0;
+height:1px;
+background:#e5e5e5;
 transition:0.4s;
+}
+
+nav a:hover{
+color:#e5e5e5;
+}
+
+nav a:hover::after{
+width:100%;
 }
 
 nav a:hover{
